@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SocialGraph | Network Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">S</div><span>Social<span class="brand-light">Graph</span></span></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav-item active" href="#"><span>◈</span> Network overview</a>
+      <a class="nav-item" href="#manage"><span>＋</span> Manage network</a>
+      <a class="nav-item" href="#analysis"><span>⌁</span> Algorithm lab</a>
+      <div class="sidebar-bottom"><div class="status-dot"></div><span>Graph engine online</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div><div class="eyebrow">NETWORK INTELLIGENCE / OVERVIEW</div><h1>Social Network Analysis</h1><p class="subtitle">Explore relationships, discover mutual connections, and map the shortest paths.</p></div>
+        <div class="top-pill"><span class="live-dot"></span> Live workspace</div>
+      </header>
+
+      <section class="stats-grid">
+        <article class="stat-card"><div class="stat-icon purple">◎</div><div class="stat-label">Total users</div><div class="stat-value" id="stat-users">—</div><div class="stat-foot">People in your network</div></article>
+        <article class="stat-card"><div class="stat-icon blue">⌁</div><div class="stat-label">Connections</div><div class="stat-value" id="stat-connections">—</div><div class="stat-foot">Undirected relationships</div></article>
+        <article class="stat-card"><div class="stat-icon green">✦</div><div class="stat-label">Average connections</div><div class="stat-value" id="stat-average">—</div><div class="stat-foot">Per user</div></article>
+        <article class="stat-card"><div class="stat-icon orange">♛</div><div class="stat-label">Most connected</div><div class="stat-value name-value" id="stat-popular">—</div><div class="stat-foot">Highest number of friends</div></article>
+      </section>
+
+      <section class="content-grid">
+        <article class="panel graph-panel">
+          <div class="panel-heading"><div><div class="eyebrow">VISUAL EXPLORER</div><h2>Connection map</h2></div><span class="mini-tag"><span class="live-dot"></span> Interactive graph</span></div>
+          <div class="graph-wrap"><svg id="network-graph" viewBox="0 0 760 420" role="img" aria-label="Social network graph"></svg></div>
+          <div class="graph-legend"><span><i class="legend-node"></i> User</span><span><i class="legend-line"></i> Connection</span><span class="muted" id="graph-count">Loading network…</span></div>
+        </article>
+
+        <article class="panel manage-panel" id="manage">
+          <div class="panel-heading"><div><div class="eyebrow">NETWORK CONTROLS</div><h2>Manage network</h2></div></div>
+          <form id="add-user-form" class="form-block">
+            <label for="new-user">Add a user</label><div class="input-row"><input id="new-user" placeholder="e.g. Olivia" maxlength="24" required><button class="primary-btn" type="submit">Add user</button></div>
+          </form>
+          <div class="divider"></div>
+          <form id="add-connection-form" class="form-block">
+            <label>Create a connection</label>
+            <div class="select-row"><select id="connect-a"></select><span class="connect-symbol">↔</span><select id="connect-b"></select></div>
+            <button class="secondary-btn full-btn" type="submit">＋ Add connection</button>
+          </form>
+          <div class="notice" id="notice">Tip: Add users and connect them to expand your network.</div>
+        </article>
+      </section>
+
+      <section class="panel algorithm-panel" id="analysis">
+        <div class="panel-heading"><div><div class="eyebrow">ALGORITHM PLAYGROUND</div><h2>Explore connections</h2><p class="panel-subtitle">Run graph algorithms on your current network.</p></div><span class="complexity-tag">BFS / DFS</span></div>
+        <div class="analysis-controls">
+          <div class="control-group"><label for="start-user">Starting user</label><select id="start-user"></select></div>
+          <div class="control-group"><label for="target-user">Destination / second user</label><select id="target-user"></select></div>
+          <div class="action-buttons">
+            <button class="algorithm-btn bfs-btn" data-action="bfs">Run BFS</button>
+            <button class="algorithm-btn dfs-btn" data-action="dfs">Run DFS</button>
+            <button class="algorithm-btn path-btn" data-action="shortest">Shortest path</button>
+            <button class="algorithm-btn mutual-btn" data-action="mutual">Mutual friends</button>
+          </div>
+        </div>
+        <div class="result-box" id="result-box"><div class="result-placeholder"><span class="result-symbol">⌁</span><div><strong>Your analysis will appear here</strong><p>Choose users and run an algorithm to get started.</p></div></div></div>
+      </section>
+      <footer>SocialGraph <span>·</span> Built with Python, Flask & Graph Algorithms <span class="footer-right">Academic project</span></footer>
+    </main>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
